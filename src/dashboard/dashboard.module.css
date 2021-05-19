@@ -16,24 +16,5 @@
 .sub {
   color: white;
   font-size: 25px;
-}
-
-.todos {
-  width: 15em;
-  height: 30%;
-  margin: 40px;
-  color: white;
-  overflow-y: scroll;
-}
-
-.todos::-webkit-scrollbar {
-  width: 5px;
-  height: 8px;
-}
-.todos::-webkit-scrollbar-track {
-  background: transparent;
-}
-.todos::-webkit-scrollbar-thumb {
-  border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.3);
+  margin: 20px 0;
 }

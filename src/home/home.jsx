@@ -1,4 +1,5 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
+import axios from "axios";
 import styles from "./home.module.css";
 import { VscArrowRight } from "react-icons/vsc";
 import { useHistory } from "react-router";
@@ -23,6 +24,10 @@ const Home = (props) => {
       goToBoard();
     }
   };
+
+  useEffect(() => {
+    axios.get("http://localhost:5000/songs").then((res) => console.log(res));
+  }, []);
 
   return (
     <div className={styles.container}>
