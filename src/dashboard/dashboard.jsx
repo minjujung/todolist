@@ -3,15 +3,89 @@ import { useHistory } from "react-router";
 import ToDos from "../todos/todos";
 import styles from "./dashboard.module.css";
 import TodosEdit from "../todosEdit/todosEdit";
+import { FaSurprise, FaRegGrinSquint } from "react-icons/fa";
+import { HiOutlineArrowRight, HiOutlineArrowLeft } from "react-icons/hi";
+import LeftMenu from "../left_menu/left_menu";
+import RightMenu from "../right_menu/right_menu";
 
 const Dashboard = (props) => {
   const history = useHistory();
   const [todos, setTodos] = useState([]);
   const [edit, setEdit] = useState(null);
   const [editText, setEditText] = useState("");
+  const [leftShow, setLeftShow] = useState(false);
+  const [rightShow, setRightShow] = useState(false);
+  const [memoId, setMemoId] = useState(null);
+
+  const toggleCheck = (id) => {
+    setTodos(
+      todos.map((todo) => {
+        if (todo.id === id) {
+          todo.complete = !todo.complete;
+          return todo;
+        }
+        return todo;
+      })
+    );
+  };
+
+  const toggleLeft = () => {
+    setLeftShow((leftShow) => !leftShow);
+  };
+
+  const toggleRight = () => {
+    setRightShow((rightShow) => !rightShow);
+  };
+
+  const toggleStar = (id) => {
+    setTodos(
+      todos.map((todo) => {
+        if (todo.id === id) {
+          todo.star = !todo.star;
+          return todo;
+        }
+        return todo;
+      })
+    );
+  };
+
+  const toggleMemo = (id) => {
+    setMemoId(id);
+    setTodos(
+      todos.map((todo) => {
+        if (todo.id === id) {
+          todo.memo = !todo.memo;
+          return todo;
+        }
+        return todo;
+      })
+    );
+  };
+
+  const writeMemo = (value) => {
+    setTodos(
+      todos.map((todo) => {
+        if (todo.id === memoId) {
+          todo.memoText = value;
+          return todo;
+        }
+        return todo;
+      })
+    );
+  };
 
   const handleAdd = (todo) => {
-    setTodos((todos) => [{ id: Date.now(), todo }, ...todos]);
+    setTodos((todos) => [
+      {
+        id: Date.now(),
+        todo,
+        complete: false,
+        star: false,
+        memo: false,
+        memoText: "",
+      },
+      ...todos,
+    ]);
     localStorage.setItem("todos", todos);
   };
 
@@ -68,17 +142,54 @@ const Dashboard = (props) => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Hello, {history.location.state.user} :)</h1>
-      <p className={styles.sub}>What will you do?</p>
-      <ToDos onAdd={handleAdd} />
-      <TodosEdit
+      <div className={styles.leftBtn} onClick={toggleLeft}>
+        <p>See What you did!</p>
+        <div className={`${styles.arrow} ${styles.btn7}`}>
+          <HiOutlineArrowRight />
+        </div>
+      </div>
+      <LeftMenu
         todos={todos}
-        edit={edit}
-        onUpdate={handleUpdate}
+        leftShow={leftShow}
+        toggleLeft={toggleLeft}
+        toggleStar={toggleStar}
+        toggleMemo={toggleMemo}
+        writeMemo={writeMemo}
         onDelete={handleDelete}
-        onEditText={handleEditText}
-        onEdit={handleEdit}
       />
+      <div className={styles.main}>
+        <h1 className={styles.title}>
+          Hello, {history.location.state.user} :)
+        </h1>
+        <p className={styles.sub}>What will you do?</p>
+        <ToDos onAdd={handleAdd} />
+        <TodosEdit
+          todos={todos}
+          edit={edit}
+          onUpdate={handleUpdate}
+          onDelete={handleDelete}
+          onEditText={handleEditText}
+          onEdit={handleEdit}
+          toggleCheck={toggleCheck}
+        />
+        <div className={styles.explain}>
+          <div>
+            <FaSurprise />
+            <span className={styles.text}>oh.. You have to do that..</span>
+          </div>
+          <div>
+            <FaRegGrinSquint />
+            <span className={styles.text}>Wow~ You did it!</span>
+          </div>
+        </div>
+      </div>
+      <div className={styles.rightBtn} onClick={toggleRight}>
+        <p>What is new!?</p>
+        <div className={`${styles.arrow} ${styles.btn7}`}>
+          <HiOutlineArrowLeft />
+        </div>
+      </div>
+      <RightMenu rightShow={rightShow} toggleRight={toggleRight} />
     </div>
   );
 };

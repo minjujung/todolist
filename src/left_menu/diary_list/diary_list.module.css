@@ -1,0 +1,104 @@
+.container {
+  height: 45%;
+  width: 70%;
+  margin-top: 20px;
+  padding: 10px;
+  display: flex;
+}
+
+.diaryList {
+  width: 90%;
+  margin: 0 10px 10px 0;
+  border: 1px solid white;
+  border-radius: 8px;
+  list-style: none;
+  padding: 20px;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 15px;
+  color: white;
+  margin-top: 0;
+}
+
+.diaryTitles {
+  width: 90%;
+  height: 90%;
+  margin: 0;
+  overflow-y: scroll;
+}
+
+.diaryTitles::-webkit-scrollbar {
+  width: 5px;
+  height: 8px;
+}
+.diaryTitles::-webkit-scrollbar-track {
+  background: transparent;
+}
+.diaryTitles::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.item {
+  color: white;
+  font-size: 13px;
+  border: 1px solid white;
+  border-radius: 8px;
+  margin: 10px;
+  padding: 15px 10px;
+  cursor: pointer;
+}
+
+.navbar {
+  width: 60px;
+  height: 110px;
+  padding: 10px;
+  margin-left: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #cbb4d465;
+  border-radius: 5px;
+}
+
+.sidebar {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  color: white;
+  padding: 0;
+}
+
+.menu {
+  width: 100%;
+  height: 30px;
+  margin: 10px;
+  text-align: center;
+  border-bottom: 3px solid transparent;
+
+  transition: all 0.3s;
+}
+
+.menu:hover {
+  border-bottom: 3px solid #371346c4;
+  cursor: pointer;
+}
+
+.menu.list,
+.menu.form {
+  border-bottom: 3px solid #371346c4;
+}
+
+.diary,
+.diaryDetail {
+  width: 90%;
+  height: 100%;
+}

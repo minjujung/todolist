@@ -1,5 +1,24 @@
 .container {
   width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: hidden;
+  animation: fadein 4s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.main {
+  width: 88%;
   height: 90%;
   display: flex;
   flex-direction: column;
@@ -17,4 +36,96 @@
   color: white;
   font-size: 25px;
   margin: 20px 0;
+}
+
+.explain {
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+.text {
+  margin: 10px;
+}
+
+.leftBtn,
+.rightBtn {
+  color: rgb(235, 228, 214);
+  margin: 3px;
+  position: absolute;
+  text-align: center;
+  cursor: default;
+}
+
+.leftBtn {
+  left: 0;
+  width: 70px;
+  margin-left: 10px;
+}
+
+.rightBtn {
+  right: 0;
+  width: 65px;
+  margin-right: 12px;
+}
+
+.arrow {
+  height: 40px;
+  width: 40px;
+  transition: all 0.8s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  border: 1px solid rgb(235, 228, 214);
+  position: relative;
+  margin: 20px 0 0 10px;
+  cursor: pointer;
+}
+
+.arrow::before,
+.arrow::after {
+  position: absolute;
+  display: block;
+  content: "";
+  width: 100%;
+  height: 100%;
+}
+
+.arrow.btn7 {
+  border: none;
+}
+
+.arrow.btn7:before,
+.arrow.btn7:after {
+  border: 1px solid rgb(235, 228, 214);
+  transition: all 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+.arrow.btn7:hover:after {
+  width: 40px;
+  animation: anim7a 3s infinite linear;
+}
+
+.arrow.btn7:hover:before {
+  width: 40px;
+  animation: anim7b 3s infinite linear;
+}
+
+@keyframes anim7a {
+  from {
+    transform: rotate(0turn);
+  }
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@keyframes anim7b {
+  from {
+    transform: rotate(0.125turn);
+  }
+  to {
+    transform: rotate(1.125turn);
+  }
 }

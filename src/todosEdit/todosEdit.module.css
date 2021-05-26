@@ -26,6 +26,11 @@
   margin-bottom: 15px;
 }
 
+.checkBtn {
+  padding: 5px;
+  width: 10%;
+}
+
 .input {
   width: 70%;
   font-size: 25px;
@@ -50,6 +55,14 @@
   width: 70%;
   font-size: 25px;
   margin-right: 10px;
+}
+
+.checked {
+  width: 70%;
+  font-size: 25px;
+  margin-right: 10px;
+  text-decoration-line: line-through;
+  text-decoration-thickness: 1px;
 }
 
 .saveBtn,
