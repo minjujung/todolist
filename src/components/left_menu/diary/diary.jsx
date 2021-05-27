@@ -16,7 +16,7 @@ const Diary = ({ onAdd, diaryList }) => {
     const diary = {
       id: Date.now(),
       date: dateRef.current?.value,
-      title: titleRef.current?.value,
+      title: titleRef.current.value || "  ",
       story: storyRef.current?.value,
     };
     setSaveClick((saveClick) => !saveClick);

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Diary from "../diary/diary";
 import DiaryDetail from "../diary_detail/diary_detail";
-import DiaryEdit from "../diary_edit/diary_edit";
+import { FaTrashAlt } from "react-icons/fa";
 import styles from "./diary_list.module.css";
 
 const DiaryList = (props) => {
@@ -38,18 +38,16 @@ const DiaryList = (props) => {
     });
   };
 
-  const handleUpdate = (diary) => {
-    const updated = Object.keys(diaryList).map((key) => {
-      if (key === detailKey) {
-        diaryList[key] = diary;
-        return diaryList[key];
-      }
-      return diaryList[key];
+  //javascript 의 delete 연산자(operator) 사용
+  //The JavaScript delete operator removes a property from an object
+  //: 객체의 속성을 삭제하는 연산자
+  const handleDelete = (key) => {
+    setDiaryList((diaryList) => {
+      const updated = { ...diaryList };
+      delete updated[key];
+      return updated;
     });
-    setDiaryList(updated);
   };
-
-  const handleDelete = () => {};
 
   return (
     <div className={styles.container}>
@@ -58,13 +56,19 @@ const DiaryList = (props) => {
           <h3 className={styles.title}>your diary box</h3>
           <div className={styles.diaryTitles}>
             {Object.keys(diaryList).map((key) => (
-              <li
-                className={styles.item}
-                key={key}
-                onClick={() => goToDetail(key)}
-              >
-                {diaryList[key].title}
-              </li>
+              <div className={styles.itemFrame} key={key}>
+                <li className={styles.item} onClick={() => goToDetail(key)}>
+                  {diaryList[key].title.length > 18
+                    ? `${diaryList[key].title.slice(0, 13)}...`
+                    : diaryList[key].title}
+                </li>
+                <button
+                  className={styles.deleteBtn}
+                  onClick={() => handleDelete(key)}
+                >
+                  <FaTrashAlt />
+                </button>
+              </div>
             ))}
           </div>
         </ul>

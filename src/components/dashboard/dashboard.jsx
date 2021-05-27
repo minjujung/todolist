@@ -7,8 +7,9 @@ import { FaSurprise, FaRegGrinSquint } from "react-icons/fa";
 import { HiOutlineArrowRight, HiOutlineArrowLeft } from "react-icons/hi";
 import LeftMenu from "../left_menu/left_menu";
 import RightMenu from "../right_menu/right_menu";
+import Youtube from "../../service/youtube";
 
-const Dashboard = (props) => {
+const Dashboard = ({ videos, onSearch }) => {
   const history = useHistory();
   const [todos, setTodos] = useState([]);
   const [edit, setEdit] = useState(null);
@@ -184,12 +185,17 @@ const Dashboard = (props) => {
         </div>
       </div>
       <div className={styles.rightBtn} onClick={toggleRight}>
-        <p>What is new!?</p>
+        <p className={styles.btnName}>Enjoy YouTube</p>
         <div className={`${styles.arrow} ${styles.btn7}`}>
           <HiOutlineArrowLeft />
         </div>
       </div>
-      <RightMenu rightShow={rightShow} toggleRight={toggleRight} />
+      <RightMenu
+        rightShow={rightShow}
+        toggleRight={toggleRight}
+        videos={videos}
+        onSearch={onSearch}
+      />
     </div>
   );
 };

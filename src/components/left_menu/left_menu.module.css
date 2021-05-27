@@ -50,7 +50,7 @@
   font-size: 30px;
 }
 
-@media screen and (max-width: 1035px) {
+@media screen and (max-width: 62rem) {
   .menu {
     width: 100%;
     background-color: rgba(46, 32, 59, 0.8);

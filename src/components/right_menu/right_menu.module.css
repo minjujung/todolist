@@ -1,0 +1,92 @@
+.menu {
+  width: 38vw;
+  height: 100vh;
+  background-color: rgba(46, 32, 59, 0.479);
+  position: fixed;
+  top: 0;
+  right: 0;
+  transition: transform 0.8s cubic-bezier(0, 0.52, 0, 1);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu.hide {
+  transform: translate3d(40vw, 0, 0);
+}
+
+.menu.show {
+  transform: translate3d(0vw, 0, 0);
+  overflow: hidden;
+}
+
+.backBtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  height: 30px;
+  width: 100px;
+  color: white;
+  font-size: 25px;
+  cursor: pointer;
+  transition: font-size 0.5s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.back {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  padding: 5px;
+}
+
+.backBtn:hover {
+  font-size: 30px;
+}
+
+.btn {
+  color: white;
+  font-size: 20px;
+  position: relative;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 62rem) {
+  .menu {
+    width: 100%;
+  }
+
+  .menu.hide {
+    transform: translate3d(100vw, 0, 0);
+  }
+}
+
+.videos {
+  width: 85%;
+  margin: auto;
+  display: block;
+  overflow-y: scroll;
+}
+
+.videos::-webkit-scrollbar {
+  width: 5px;
+  height: 8px;
+}
+.videos::-webkit-scrollbar-track {
+  background: transparent;
+}
+.videos::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.video {
+  margin: 0 auto 30px auto;
+  display: block;
+}

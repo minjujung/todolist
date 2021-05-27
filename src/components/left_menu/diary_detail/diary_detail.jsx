@@ -2,11 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./diary_detail.module.css";
 
 const DiaryDetail = ({ diary, onUpdate }) => {
-  const { date, title, story } = diary;
   const [edit, setEdit] = useState(false);
+  const { date, title, story } = diary;
 
   const onChange = (event) => {
-    if (event.currentTarget == null) {
+    if (event.currentTarget === null) {
       return;
     }
     event.preventDefault();
