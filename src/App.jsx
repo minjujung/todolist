@@ -3,8 +3,9 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
 import Dashboard from "./components/dashboard/dashboard";
 import Home from "./components/home/home";
+import Login from "./components/login/login";
 
-function App({ youtube }) {
+function App({ youtube, authService }) {
   const [videos, setVideos] = useState([]);
 
   const search = (term) => {
@@ -23,8 +24,15 @@ function App({ youtube }) {
         <Route exact path='/'>
           <Home />
         </Route>
+        <Route exact path='/login'>
+          <Login authService={authService} />
+        </Route>
         <Route exact path='/dashboard'>
-          <Dashboard videos={videos} onSearch={search} />
+          <Dashboard
+            videos={videos}
+            onSearch={search}
+            authService={authService}
+          />
         </Route>
       </Switch>
     </BrowserRouter>

@@ -3,6 +3,7 @@ import axios from "axios";
 import styles from "./home.module.css";
 import { VscArrowRight } from "react-icons/vsc";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 
 const Home = (props) => {
   const inputRef = useRef();
@@ -31,6 +32,9 @@ const Home = (props) => {
 
   return (
     <div className={styles.container}>
+      <Link to='/login'>
+        <button className={styles.loginBtn}>Do You Want To Login?</button>
+      </Link>
       <h1 className={styles.title}>galaxy diary</h1>
       <h2 className={styles.sub}>What is your name?</h2>
       <div className={styles.form}>

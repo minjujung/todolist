@@ -89,4 +89,11 @@
 .video {
   margin: 0 auto 30px auto;
   display: block;
+  border: none;
+  border-radius: 8px;
+  opacity: 0.8;
+}
+
+.video:hover {
+  opacity: 1;
 }

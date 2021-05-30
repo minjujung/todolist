@@ -7,9 +7,8 @@ import { FaSurprise, FaRegGrinSquint } from "react-icons/fa";
 import { HiOutlineArrowRight, HiOutlineArrowLeft } from "react-icons/hi";
 import LeftMenu from "../left_menu/left_menu";
 import RightMenu from "../right_menu/right_menu";
-import Youtube from "../../service/youtube";
 
-const Dashboard = ({ videos, onSearch }) => {
+const Dashboard = ({ videos, onSearch, authService }) => {
   const history = useHistory();
   const [todos, setTodos] = useState([]);
   const [edit, setEdit] = useState(null);
@@ -17,6 +16,26 @@ const Dashboard = ({ videos, onSearch }) => {
   const [leftShow, setLeftShow] = useState(false);
   const [rightShow, setRightShow] = useState(false);
   const [memoId, setMemoId] = useState(null);
+  const [name, setName] = useState("");
+
+  console.log(history);
+
+  const user = history.location.state.userInfo;
+  const site = user?.providerId.split(".")[0];
+
+  const loginSite = () => {
+    if (site === "google") {
+      setName(user.profile.name);
+    } else if (site === "github" || site === "twitter") {
+      setName(user.username);
+    } else {
+      setName("Stranger😎");
+    }
+  };
+
+  useEffect(() => {
+    loginSite();
+  }, []);
 
   const toggleCheck = (id) => {
     setTodos(
@@ -141,6 +160,16 @@ const Dashboard = ({ videos, onSearch }) => {
     localStorage.setItem("todos", data);
   }, [todos]);
 
+  useEffect(() => {
+    authService.checkState((user) => {
+      if (user || history.location.state.user) {
+        console.log(user);
+      } else {
+        history.push("/");
+      }
+    });
+  });
+
   return (
     <div className={styles.container}>
       <div className={styles.leftBtn} onClick={toggleLeft}>
@@ -159,8 +188,16 @@ const Dashboard = ({ videos, onSearch }) => {
         onDelete={handleDelete}
       />
       <div className={styles.main}>
+        {site ? (
+          <button
+            className={styles.logOutBtn}
+            onClick={() => authService.logout()}
+          >
+            Log out
+          </button>
+        ) : null}
         <h1 className={styles.title}>
-          Hello, {history.location.state.user} :)
+          Hello, {site ? `${name}` : `${history.location.state.user}`} :)
         </h1>
         <p className={styles.sub}>What will you do?</p>
         <ToDos onAdd={handleAdd} />
